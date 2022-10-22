@@ -1,9 +1,10 @@
 import styled from "styled-components";
 
-interface inputProps {
+export interface inputProps {
+  id?: number;
   type: string;
   placeholder: string;
-  onChange?: (e: React.FormEvent<HTMLInputElement>) => void;
+  onChange?: (e: any) => void;
 }
 
 const Input = styled.input`
@@ -21,6 +22,10 @@ const Input = styled.input`
     font-size: 16px;
     line-height: 20px;
     color: #a5a5a5;
+  }
+
+  :focus {
+    background-color: transparent;
   }
 `;
 

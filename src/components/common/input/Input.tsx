@@ -15,7 +15,9 @@ const Input = styled.input`
   background-color: transparent;
   outline: 0;
   color: white;
-
+  font-size: 18px;
+  font-family: "Lexend Deca";
+  text-transform: "capitalize";
   ::placeholder {
     font-family: "Lexend Deca";
     font-weight: 300;

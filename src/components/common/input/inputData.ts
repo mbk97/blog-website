@@ -9,7 +9,7 @@ export const loginInputData:inputProps[]=[
      {
         id:2,
         type:"password",
-        placeholder:"Enter  password"
+        placeholder:"Enter password"
     }
 ]
 

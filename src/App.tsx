@@ -1,5 +1,6 @@
 import React from "react";
 import Login from "./components/login/Login";
+import ReadMore from "./components/readMore/ReadMore";
 import Signup from "./components/signUp/Signup";
 import { GlobalStyle } from "./GlobalStyle";
 
@@ -8,7 +9,8 @@ const App = () => {
     <React.Fragment>
       <GlobalStyle />
       {/* <Login /> */}
-      <Signup />
+      {/* <Signup /> */}
+      <ReadMore />
     </React.Fragment>
   );
 };

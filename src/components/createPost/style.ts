@@ -1,14 +1,5 @@
 import styled from "styled-components";
 
-export const CreatePostWrapper = styled.div`
-  margin: 50px;
-  width: 90%;
-
-  @media (max-width: 600px) {
-    margin: 20px;
-  }
-`;
-
 export const ContentContainer = styled.div`
   height: 70vh;
   width: 100%;
@@ -18,7 +9,6 @@ export const ContentContainer = styled.div`
   @media (max-width: 600px) {
     padding: 20px;
     width: 100%;
-    /* margin-bottom: 2rem; */
   }
 `;
 

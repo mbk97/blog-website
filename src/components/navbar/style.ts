@@ -9,6 +9,7 @@ export const NavContainer = styled.div`
   flex-direction: column;
   width: 95px;
   height: 100vh;
+  bottom: 0px;
 
   @media (max-width: 900px) {
     border: 2px solid #6eeb83;

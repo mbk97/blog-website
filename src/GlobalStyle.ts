@@ -108,6 +108,14 @@ export const WelcomeText = styled.p`
 
 export const TitleContainer = styled.div`
   width: 300px;
+  @media (max-width: 470px) {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
 `;
 
 export const Line = styled.div`
@@ -116,6 +124,9 @@ export const Line = styled.div`
   background: #6eeb83;
   margin-left: 20px;
   /* margin: auto; */
+  @media (max-width: 470px) {
+    margin-left: 0px;
+  }
 `;
 
 export const Layout = styled.div`
@@ -135,4 +146,13 @@ export const NavWrapper = styled.div`
   flex-direction: column;
   width: 120px;
   height: 20vh;
+`;
+
+export const GeneralContentWrapper = styled.div`
+  margin: 50px;
+  width: 90%;
+
+  @media (max-width: 600px) {
+    margin: 20px;
+  }
 `;

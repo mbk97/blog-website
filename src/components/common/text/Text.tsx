@@ -35,4 +35,31 @@ const PageTitle = ({ children }: textProps) => {
   return <Title>{children}</Title>;
 };
 
-export { CustomTitle, PageTitle };
+const LatestTitle = styled.h2`
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 44px;
+  color: #6eeb83;
+  font-family: "DM Serif Display";
+
+  @media (max-width: 470px) {
+    font-size: 24px;
+    line-height: 33px;
+  }
+`;
+
+const LatestText = styled.p`
+  font-family: "Lexend Deca";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 25px;
+  color: #ffffff;
+  @media (max-width: 470px) {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 20px;
+  }
+`;
+
+export { CustomTitle, PageTitle, LatestTitle, LatestText };

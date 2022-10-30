@@ -1,26 +1,29 @@
 import React from "react";
-import Latest from "./components/latest/Latest";
-import CreatePost from "./components/createPost/CreatePost";
-import Navbar from "./components/navbar/Navbar";
-// import Login from "./components/login/Login";
-// import ReadMore from "./components/readMore/ReadMore";
-// import Signup from "./components/signUp/Signup";
-import { GlobalStyle, Layout, NavWrapper } from "./GlobalStyle";
+import { GlobalStyle } from "./GlobalStyle";
 import ForgotPassword from "./components/forgotPassword/ForgotPassword";
+import { Routes, Route } from "react-router-dom";
+import Login from "./components/login/Login";
+import Signup from "./components/signUp/Signup";
+import Dashboard from "./components/dashboard/Dashboard";
+import ProtectedRoute from "./components/protected/ProtectedRoute";
 
 const App = () => {
   return (
     <React.Fragment>
       <GlobalStyle />
-      <ForgotPassword />
-      {/* <Layout>
-        <NavWrapper>
-          <Navbar />
-        </NavWrapper>
-        <React.Fragment>
-          <Latest />
-        </React.Fragment>
-      </Layout> */}
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route
+          path="/dashboard/*"
+          element={
+            <ProtectedRoute>
+              <Dashboard />
+            </ProtectedRoute>
+          }
+        />
+      </Routes>
     </React.Fragment>
   );
 };

@@ -2,6 +2,7 @@ import React from "react";
 import { ForgotLogo, ForgotLogoText, ForgotWrapper } from "./style";
 import {
   AuthInputWrapper,
+  AuthLink,
   AuthRightContent,
   AuthWrapper,
   ButtonWrapper,
@@ -33,7 +34,7 @@ const ForgotPassword = () => {
             <ButtonWrapper>
               <CustomButton>Submit</CustomButton>
               <LinkText>
-                <ColoredText> Log-in</ColoredText>{" "}
+                <AuthLink to="/login">Go Back to login</AuthLink>
               </LinkText>
             </ButtonWrapper>
           </ForgotWrapper>

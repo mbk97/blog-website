@@ -1,4 +1,5 @@
 import styled, { createGlobalStyle } from "styled-components";
+import { Link, NavLink } from "react-router-dom";
 
 export const GlobalStyle = createGlobalStyle`
 
@@ -25,6 +26,15 @@ export const AuthWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+`;
+
+export const AuthLink = styled(Link)`
+  text-decoration: none;
+  color: #6eeb83;
+`;
+
+export const DashboardLink = styled(Link)`
+  text-decoration: none;
 `;
 
 export const AuthLeftContent = styled.div`

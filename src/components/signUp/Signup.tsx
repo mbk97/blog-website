@@ -3,6 +3,7 @@ import {
   AuthImg,
   AuthInputWrapper,
   AuthLeftContent,
+  AuthLink,
   AuthRightContent,
   AuthWrapper,
   ButtonWrapper,
@@ -55,7 +56,9 @@ const Signup = () => {
               <CustomButton>Submit</CustomButton>
               <LinkText>
                 already have an account? <br />{" "}
-                <ColoredText> log-in</ColoredText>{" "}
+                <ColoredText>
+                  <AuthLink to="/login">login</AuthLink>
+                </ColoredText>{" "}
               </LinkText>
             </ButtonWrapper>
           </AuthInputWrapper>

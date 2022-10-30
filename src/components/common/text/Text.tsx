@@ -18,8 +18,21 @@ const Text = styled.h2`
   }
 `;
 
+const Title = styled.p`
+  font-family: "Lexend Deca";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 25px;
+  color: #ffffff;
+`;
+
 const CustomTitle = ({ children }: textProps) => {
   return <Text>{children}</Text>;
 };
 
-export default CustomTitle;
+const PageTitle = ({ children }: textProps) => {
+  return <Title>{children}</Title>;
+};
+
+export { CustomTitle, PageTitle };

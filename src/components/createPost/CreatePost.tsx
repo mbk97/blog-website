@@ -1,10 +1,9 @@
 import React, { useState } from "react";
-import { Line, TitleContainer } from "../../GlobalStyle";
+import { GeneralContentWrapper, Line, TitleContainer } from "../../GlobalStyle";
 import CustomButton from "../common/button/Button";
 import { PageTitle } from "../common/text/Text";
 import {
   ContentContainer,
-  CreatePostWrapper,
   PostInput,
   PostTextArea,
   TitleInputContainer,
@@ -34,7 +33,7 @@ const CreatePost = () => {
   };
 
   return (
-    <CreatePostWrapper>
+    <GeneralContentWrapper>
       <TitleContainer>
         <Line></Line>
         <PageTitle>Create Post</PageTitle>
@@ -61,7 +60,7 @@ const CreatePost = () => {
       <BtnWrapper>
         <CustomButton>Create</CustomButton>
       </BtnWrapper>
-    </CreatePostWrapper>
+    </GeneralContentWrapper>
   );
 };
 

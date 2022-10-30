@@ -6,19 +6,21 @@ import Navbar from "./components/navbar/Navbar";
 // import ReadMore from "./components/readMore/ReadMore";
 // import Signup from "./components/signUp/Signup";
 import { GlobalStyle, Layout, NavWrapper } from "./GlobalStyle";
+import ForgotPassword from "./components/forgotPassword/ForgotPassword";
 
 const App = () => {
   return (
     <React.Fragment>
       <GlobalStyle />
-      <Layout>
+      <ForgotPassword />
+      {/* <Layout>
         <NavWrapper>
           <Navbar />
         </NavWrapper>
         <React.Fragment>
           <Latest />
         </React.Fragment>
-      </Layout>
+      </Layout> */}
     </React.Fragment>
   );
 };

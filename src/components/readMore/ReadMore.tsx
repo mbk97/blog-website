@@ -1,5 +1,5 @@
 import React from "react";
-import CustomTitle from "../common/text/Text";
+import { CustomTitle } from "../common/text/Text";
 import {
   Container,
   ReadMoreContentText,

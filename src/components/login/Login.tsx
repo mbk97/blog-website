@@ -54,7 +54,7 @@ const Login = () => {
             <CustomButton>Submit</CustomButton>
             <div>
               <LinkText>
-                don’t have an account? <br />{" "}
+                Don’t have an account?{" "}
                 <ColoredText>
                   <AuthLink to="/signup">sign-up</AuthLink>
                 </ColoredText>{" "}

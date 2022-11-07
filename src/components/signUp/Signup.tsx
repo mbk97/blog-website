@@ -55,7 +55,7 @@ const Signup = () => {
             <ButtonWrapper>
               <CustomButton>Submit</CustomButton>
               <LinkText>
-                already have an account? <br />{" "}
+                Already have an account?{" "}
                 <ColoredText>
                   <AuthLink to="/login">login</AuthLink>
                 </ColoredText>{" "}

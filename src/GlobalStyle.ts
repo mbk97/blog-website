@@ -1,5 +1,5 @@
 import styled, { createGlobalStyle } from "styled-components";
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export const GlobalStyle = createGlobalStyle`
 
@@ -117,14 +117,15 @@ export const WelcomeText = styled.p`
 `;
 
 export const TitleContainer = styled.div`
-  width: 300px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   @media (max-width: 470px) {
-    width: 100%;
-
     display: flex;
     align-items: center;
-    justify-content: center;
-    flex-direction: column;
+    /* justify-content: center; */
+    /* flex-direction: column; */
   }
 `;
 

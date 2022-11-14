@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { GeneralContentWrapper, Line, TitleContainer } from "../../GlobalStyle";
-import CustomButton from "../common/button/Button";
-import { PageTitle } from "../common/text/Text";
+import CustomButton from "../../components/common/button/Button";
+import { PageTitle } from "../../components/common/text/Text";
 import {
   ContentContainer,
   PostInput,
@@ -10,6 +10,7 @@ import {
   PostInputContainer,
   BtnWrapper,
 } from "./style";
+import Logout from "../../components/logout/Logout";
 
 const CreatePost = () => {
   const [data, setData] = useState<any>({
@@ -35,8 +36,13 @@ const CreatePost = () => {
   return (
     <GeneralContentWrapper>
       <TitleContainer>
-        <Line></Line>
-        <PageTitle>Create Post</PageTitle>
+        <div>
+          <Line></Line>
+          <PageTitle>Create Post</PageTitle>
+        </div>
+        <React.Fragment>
+          <Logout />
+        </React.Fragment>
       </TitleContainer>
       <ContentContainer>
         <TitleInputContainer>

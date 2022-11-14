@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   BottomItems,
   NameLogo,
+  NameTitle,
   NameWrapper,
   NavContainer,
   NavIcon,
@@ -13,16 +14,20 @@ import {
 import { BiTrendingUp } from "react-icons/bi";
 import { IoIosAddCircleOutline } from "react-icons/io";
 import { DashboardLink } from "../../GlobalStyle";
+import useUserData from "../../hooks/useUserData";
 
 const Navbar = () => {
-  const [activeNav, setActiveNav] = useState(false);
-  console.log(window.location.href);
+  const data = useUserData().name;
+  const nameSymbol = data.charAt(0);
+  const name = data.split(" ")[0];
+
   return (
     <NavContainer>
       <NavItemsWrapper>
         <TopItems>
           <NameWrapper>
-            <NameLogo>M</NameLogo>
+            <NameLogo>{nameSymbol}</NameLogo>
+            <NameTitle>{name}</NameTitle>
           </NameWrapper>
           <TrendTextWrapper>
             <DashboardLink to="/dashboard/latest">

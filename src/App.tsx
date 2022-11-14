@@ -1,9 +1,9 @@
 import React from "react";
 import { GlobalStyle } from "./GlobalStyle";
-import ForgotPassword from "./components/forgotPassword/ForgotPassword";
+import ForgotPassword from "./pages/forgotPassword/ForgotPassword";
 import { Routes, Route } from "react-router-dom";
-import Login from "./components/login/Login";
-import Signup from "./components/signUp/Signup";
+import Login from "./pages/login/Login";
+import Signup from "./pages/signUp/Signup";
 import Dashboard from "./components/dashboard/Dashboard";
 import ProtectedRoute from "./components/protected/ProtectedRoute";
 import Snackbar from "./components/snackbar/Snackbar";
@@ -14,7 +14,7 @@ const App = () => {
       <GlobalStyle />
       <Snackbar />
       <Routes>
-        <Route path="/login" element={<Login />} />
+        <Route path="/" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route

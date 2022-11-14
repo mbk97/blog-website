@@ -2,7 +2,8 @@ import styled from "styled-components";
 
 interface btnProps {
   children: React.ReactNode;
-  onClick?: () => void;
+  onClick?: (e: React.MouseEvent<HTMLElement>) => void;
+  disabled?: boolean;
 }
 
 const Button = styled.button`
@@ -18,10 +19,23 @@ const Button = styled.button`
   font-family: "Lexend Deca";
   color: #000000;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
-const CustomButton = ({ children, onClick }: btnProps) => {
-  return <Button onClick={onClick}>{children}</Button>;
+const CustomButton = ({ children, onClick, disabled }: btnProps) => {
+  return (
+    <Button
+      onClick={onClick}
+      disabled={disabled}
+      style={{
+        opacity: disabled ? 0.4 : 1,
+      }}
+    >
+      {children}
+    </Button>
+  );
 };
 
 export default CustomButton;

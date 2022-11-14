@@ -1,5 +1,5 @@
 import { snackBarTypes } from "../actionTypes/snackBarTypes";
-import { snackBarStateTypes } from "../interface";
+import { snackBarStateTypes } from "../../interfaces/snackbar";
 import { AnyAction } from "redux";
 
 const initialState: snackBarStateTypes = {

@@ -63,6 +63,7 @@ export const NameWrapper = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
   }
 `;
 
@@ -80,7 +81,7 @@ export const NameLogo = styled.div`
   border-radius: 50%;
   display: grid;
   place-items: center;
-  margin-bottom: 3rem;
+  margin-bottom: 1rem;
   @media (max-width: 900px) {
     margin-bottom: 0rem;
   }
@@ -106,8 +107,12 @@ export const NavTitle = styled.p`
   /* padding-left: 10px; */
 `;
 
+export const NameTitle = styled(NavTitle)`
+  font-size: 12px;
+`;
+
 export const TrendTextWrapper = styled.div`
-  margin-bottom: 3rem;
+  margin: 3rem 0;
   @media (max-width: 900px) {
     display: flex;
     align-items: center;

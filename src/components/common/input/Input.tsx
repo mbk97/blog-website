@@ -1,10 +1,13 @@
+import React from "react";
 import styled from "styled-components";
 
 export interface inputProps {
   id?: number;
   type: string;
   placeholder: string;
-  onChange?: (e: any) => void;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  name: string;
+  value: string;
 }
 
 const Input = styled.input`
@@ -31,8 +34,22 @@ const Input = styled.input`
   }
 `;
 
-const CustomInput = ({ type, placeholder, onChange }: inputProps) => {
-  return <Input type={type} placeholder={placeholder} onChange={onChange} />;
+const CustomInput = ({
+  type,
+  placeholder,
+  onChange,
+  name,
+  value,
+}: inputProps) => {
+  return (
+    <Input
+      type={type}
+      placeholder={placeholder}
+      onChange={onChange}
+      name={name}
+      value={value}
+    />
+  );
 };
 
 export default CustomInput;

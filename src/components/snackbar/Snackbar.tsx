@@ -10,12 +10,10 @@ const Snackbar = () => {
 
   const SHOW = useSelector((state: any) => state.snackBarState.toggleSnack);
   const MESSAGE = useSelector((state: any) => state.snackBarState.message);
-  console.log(MESSAGE, "#####hello#######");
 
   const MESSAGE_TEXT: any = useSelector(
     (state: any) => state.snackBarState.messageType
   );
-  console.log(MESSAGE_TEXT === "error", "#####hi#######");
 
   let TIMER: any;
   const handleTimeout = () => {

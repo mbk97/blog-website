@@ -1,6 +1,6 @@
 import React from "react";
 import { GeneralContentWrapper } from "../../GlobalStyle";
-import { CustomTitle } from "../common/text/Text";
+import { CustomTitle } from "../../components/common/text/Text";
 import {
   ReadMoreContentText,
   ReadMoreSmallText,

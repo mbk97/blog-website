@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import { Navigate } from "react-router-dom";
+import useUserData from "../../hooks/useUserData";
 
 const ProtectedRoute = ({ children }: any) => {
-  const [isLogin, setIsLogin] = useState(true);
-
-  return isLogin ? children : <Navigate to="/login" />;
+  const auth = useUserData();
+  return auth ? children : <Navigate to="/" />;
 };
 
 export default ProtectedRoute;

@@ -1,10 +1,10 @@
 import React from "react";
 import { Layout, NavWrapper } from "../../GlobalStyle";
-import Latest from "../latest/Latest";
+import Latest from "../../pages/latest/Latest";
 import Navbar from "../navbar/Navbar";
 import { Route, Routes } from "react-router-dom";
-import CreatePost from "../createPost/CreatePost";
-import ReadMore from "../readMore/ReadMore";
+import CreatePost from "../../pages/createPost/CreatePost";
+import ReadMore from "../../pages/readMore/ReadMore";
 
 const Dashboard = () => {
   return (

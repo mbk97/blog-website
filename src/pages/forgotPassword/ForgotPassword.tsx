@@ -12,8 +12,8 @@ import {
   WelcomeHeader,
   WelcomeText,
 } from "../../GlobalStyle";
-import CustomInput from "../common/input/Input";
-import CustomButton from "../common/button/Button";
+import CustomInput from "../../components/common/input/Input";
+import CustomButton from "../../components/common/button/Button";
 
 const ForgotPassword = () => {
   return (
@@ -28,7 +28,7 @@ const ForgotPassword = () => {
               <WelcomeHeader>Forgot password?</WelcomeHeader>
               <WelcomeText>Enter your mail to reset your password</WelcomeText>
               <InputContainer>
-                <CustomInput type="email" placeholder="Enter your mail" />
+                {/* <CustomInput type="email" placeholder="Enter your mail" /> */}
               </InputContainer>
             </AuthInputWrapper>
             <ButtonWrapper>

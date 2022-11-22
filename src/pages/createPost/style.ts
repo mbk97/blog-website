@@ -7,7 +7,7 @@ export const ContentContainer = styled.div`
   margin-top: 40px;
   padding: 40px;
   @media (max-width: 600px) {
-    padding: 20px;
+    padding: 10px;
     width: 100%;
   }
 `;
@@ -43,7 +43,6 @@ export const PostInputContainer = styled.div`
 `;
 
 export const PostTextArea = styled.textarea`
-  /* height: 300px; */
   height: 100%;
   border: 0;
   background-color: transparent;
@@ -54,7 +53,7 @@ export const PostTextArea = styled.textarea`
   resize: none;
   @media (max-width: 600px) {
     font-size: 24px;
-    height: 100%;
+    height: 400px;
   }
 
   &::placeholder {

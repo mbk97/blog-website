@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 export const LatestContentWrapper = styled.div`
   display: flex;
-  /* flex-direction: column; */
   gap: 30px;
   margin: 4rem 0;
   width: 80vw;
@@ -12,9 +11,9 @@ export const LatestContentWrapper = styled.div`
 `;
 
 export const DateAndMailContainer = styled.div`
-  width: 200px;
   display: flex;
   flex-direction: column;
+  align-items: flex-end;
   @media (max-width: 600px) {
     display: none;
   }
@@ -26,12 +25,14 @@ export const TextContentContainer = styled.div``;
 
 export const MobileDateAndMailWrapper = styled.div`
   display: none;
+  margin-top: 10px;
 
   @media (max-width: 600px) {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-top: 10px;
+    width: 100%;
   }
 `;
 
@@ -41,7 +42,6 @@ export const DateText = styled.p`
   font-weight: 600;
   font-size: 32px;
   line-height: 40px;
-  /* text-align: right; */
 
   @media (max-width: 470px) {
     font-weight: 600;
@@ -80,5 +80,22 @@ export const TagPill = styled.div`
 export const Span = styled.span`
   font-weight: 300;
   color: #6eeb83;
+  cursor: pointer;
+`;
+
+export const ActionBtnFlex = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 500px;
+  align-items: center;
+  margin-top: 20px;
+
+  @media (max-width: 600px) {
+    width: 300px;
+  }
+`;
+
+export const ActionIcons = styled.div`
+  margin-top: 15px;
   cursor: pointer;
 `;

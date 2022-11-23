@@ -11,12 +11,20 @@ import {
   BtnWrapper,
 } from "./style";
 import Logout from "../../components/logout/Logout";
+import { createBlogAction } from "../../components/redux/actions/blog";
+import { useAppDispatch } from "../../components/redux/store";
+import Spinner from "../../components/spinner/Spinner";
+import { useNavigate } from "react-router-dom";
+import { openSnackBar } from "../../components/redux/actions/snackbarActions";
 
 const CreatePost = () => {
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const [data, setData] = useState<any>({
     title: "",
     description: "",
   });
+  const [loading, setLoading] = useState<boolean>(false);
 
   const { title, description } = data;
 
@@ -31,6 +39,21 @@ const CreatePost = () => {
       ...data,
       [name]: value,
     });
+  };
+
+  const handleCreateBlog = () => {
+    setLoading(true);
+    dispatch(createBlogAction({ data, onSuccess, onError }));
+  };
+
+  const onSuccess = (data: any) => {
+    dispatch(openSnackBar("success", data));
+    setLoading(false);
+    navigate("/dashboard/latest");
+  };
+  const onError = (error: any) => {
+    dispatch(openSnackBar("success", error));
+    setLoading(false);
   };
 
   return (
@@ -64,7 +87,9 @@ const CreatePost = () => {
         </PostInputContainer>
       </ContentContainer>
       <BtnWrapper>
-        <CustomButton>Create</CustomButton>
+        <CustomButton onClick={handleCreateBlog}>
+          {loading ? <Spinner /> : "Create"}
+        </CustomButton>
       </BtnWrapper>
     </GeneralContentWrapper>
   );

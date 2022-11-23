@@ -1,5 +1,8 @@
 import { action } from "typesafe-actions";
-import { loginRequest, registerUserRequest } from "../../../services/request";
+import {
+  loginRequest,
+  registerUserRequest,
+} from "../../../services/requests/auth";
 import { saveToLocalStorage } from "../../../utils/storage";
 import { getErrorMessage } from "../../../utils/response-helper";
 import { authTypes } from "../actionTypes/auth";

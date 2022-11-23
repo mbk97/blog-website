@@ -1,2 +1,4 @@
-export const registerUserUrl: any = "/user/register";
-export const loginUserUrl: any = "user/login";
+export const registerUserUrl: string = "/user/register";
+export const loginUserUrl: string = "/user/login";
+export const getBlogPost: string = "/blog";
+export const createBlogPost: string = "/blog";

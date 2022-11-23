@@ -42,6 +42,10 @@ const LatestTitle = styled.h2`
   color: #6eeb83;
   font-family: "DM Serif Display";
 
+  ::first-letter {
+    text-transform: uppercase;
+  }
+
   @media (max-width: 470px) {
     font-size: 24px;
     line-height: 33px;

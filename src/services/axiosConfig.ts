@@ -6,7 +6,7 @@ import axios, {
 } from "axios";
 import { getFromLocalStorage } from "../utils/storage";
 // const BASE_URL = process.env.BASE_URL;
-const BASE_URL = "https://blog-website-api.vercel.app/";
+const BASE_URL = "http://localhost:8000/";
 
 const axiosInstance: AxiosInstance = axios.create({
   baseURL: BASE_URL,

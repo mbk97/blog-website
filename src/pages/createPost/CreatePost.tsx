@@ -52,7 +52,7 @@ const CreatePost = () => {
     navigate("/dashboard/latest");
   };
   const onError = (error: any) => {
-    dispatch(openSnackBar("success", error));
+    dispatch(openSnackBar("error", error));
     setLoading(false);
   };
 

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { GeneralContentWrapper } from "../../GlobalStyle";
 import { CustomTitle } from "../../components/common/text/Text";
 import {
@@ -6,33 +6,49 @@ import {
   ReadMoreSmallText,
   ReadMoreUserDetails,
 } from "./style";
+import { useParams } from "react-router-dom";
+import { getSinglePostAction } from "../../components/redux/actions/blog";
+import { useAppDispatch } from "../../components/redux/store";
+import { useTypedSelector } from "../../components/redux/reducers/rootReducer";
+import moment from "moment";
+import ContentLoader from "../../components/contentLoader/ContentLoader";
 
 const ReadMore = () => {
+  const id = useParams().id;
+  const dispatch = useAppDispatch();
+  const [loading, setLoading] = useState(true);
+  const blogData = useTypedSelector((state) => state.blogs.singleBlog);
+  const loadingBlog = useTypedSelector(
+    (state) => state.blogs.singleBlogLoading
+  );
+
+  console.log(loadingBlog);
+  const year = moment(blogData.created_at).format("D-MMMM-YYYY");
+
+  useEffect(() => {
+    dispatch(getSinglePostAction({ id, onSuccess, onError }));
+    setLoading(false);
+  }, [dispatch, id]);
+
+  const onSuccess = () => {
+    setLoading(false);
+  };
+  const onError = () => {
+    setLoading(false);
+  };
+
   return (
     <GeneralContentWrapper>
-      <CustomTitle>
-        15 Disadvantages Of Freedom And How You Can Workaround It.
-      </CustomTitle>
-      <ReadMoreUserDetails>
-        <ReadMoreSmallText>written by @samurai2099</ReadMoreSmallText>
-        <ReadMoreSmallText>on 27 may 2022</ReadMoreSmallText>
-      </ReadMoreUserDetails>
-      <ReadMoreContentText>
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nesciunt velit
-        laboriosam dicta voluptatum esse. Nam voluptas, ipsam dolorum iusto
-        dolore magnam necessitatibus sit ducimus nesciunt doloribus sunt est,
-        repellendus quam. Lorem ipsum dolor sit amet consectetur adipisicing
-        elit. Enim doloremque, praesentium consequuntur, et quos doloribus,
-        cupiditate molestias adipisci eligendi laboriosam explicabo maxime
-        voluptatum quia! Quod quisquam rerum eveniet? Sit cumque nam, molestiae
-        enim quas corrupti nesciunt autem a dolor molestias, quam veritatis
-        exercitationem blanditiis consectetur explicabo eaque obcaecati aperiam
-        vero dolorem maiores possimus odio! Necessitatibus rem officiis aut quae
-        dicta quasi provident fuga? Ducimus delectus sint, doloribus aliquam
-        porro odio! Aut quos voluptatem, officia, pariatur inventore repellat
-        saepe consequatur architecto et quidem sunt vero tenetur! Est commodi
-        consequatur ipsa officiis?
-      </ReadMoreContentText>
+      {loadingBlog && <ContentLoader />}
+      {!loadingBlog && blogData && (
+        <>
+          <CustomTitle>{blogData?.title}</CustomTitle>
+          <ReadMoreUserDetails>
+            <ReadMoreSmallText>written on {year}</ReadMoreSmallText>
+          </ReadMoreUserDetails>
+          <ReadMoreContentText>{blogData?.description}</ReadMoreContentText>
+        </>
+      )}
     </GeneralContentWrapper>
   );
 };

@@ -41,14 +41,19 @@ const LatestTitle = styled.h2`
   line-height: 44px;
   color: #6eeb83;
   font-family: "DM Serif Display";
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  /* width: 50rem; */
+
 
   ::first-letter {
     text-transform: uppercase;
   }
 
-  @media (max-width: 470px) {
+  @media (max-width: 900px) {
     font-size: 24px;
     line-height: 33px;
+    /* width: 100%; */
   }
 `;
 
@@ -59,10 +64,15 @@ const LatestText = styled.p`
   font-size: 20px;
   line-height: 25px;
   color: #ffffff;
-  @media (max-width: 470px) {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  /* width: 800px; */
+  @media (max-width: 900px) {
     font-weight: 400;
     font-size: 16px;
     line-height: 20px;
+    /* width: 300px; */
+
   }
 `;
 

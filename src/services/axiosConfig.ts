@@ -5,11 +5,11 @@ import axios, {
   AxiosResponse,
 } from "axios";
 import { getFromLocalStorage } from "../utils/storage";
-// const BASE_URL = process.env.BASE_URL;
-const BASE_URL = "http://localhost:8000/";
+// const BASE_URL = ;
+// const BASE_URL = "https://blog-api-web-1.onrender.com/";
 
 const axiosInstance: AxiosInstance = axios.create({
-  baseURL: BASE_URL,
+  baseURL: process.env.REACT_APP_BASE_URL,
   headers: {
     "Content-Type": "application/json",
     Accept: "application/json, text/plain, */*",

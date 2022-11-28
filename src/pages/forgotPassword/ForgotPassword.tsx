@@ -6,13 +6,13 @@ import {
   AuthRightContent,
   AuthWrapper,
   ButtonWrapper,
-  ColoredText,
+  // ColoredText,
   InputContainer,
   LinkText,
   WelcomeHeader,
   WelcomeText,
 } from "../../GlobalStyle";
-import CustomInput from "../../components/common/input/Input";
+// import CustomInput from "../../components/common/input/Input";
 import CustomButton from "../../components/common/button/Button";
 
 const ForgotPassword = () => {

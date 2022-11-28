@@ -9,8 +9,8 @@ import {
   DateAndMailContainer,
   DateText,
   LatestContentWrapper,
-  MailText,
-  MailWrapper,
+  // MailText,
+  // MailWrapper,
   MobileDateAndMailWrapper,
   Span,
   TagPill,
@@ -36,7 +36,6 @@ import Edit from "../../components/editPost/Edit";
 import { ICreate } from "../../components/interfaces/blog";
 import { saveToLocalStorage } from "../../utils/storage";
 import { Link } from "react-router-dom";
-import ContentLoader from "../../components/contentLoader/ContentLoader";
 import BlogContentLoader from "../../components/contentLoader/BlogContentLoader";
 
 const Latest = () => {

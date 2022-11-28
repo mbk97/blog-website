@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { GeneralContentWrapper } from "../../GlobalStyle";
 import { CustomTitle } from "../../components/common/text/Text";
 import {
@@ -16,7 +16,6 @@ import ContentLoader from "../../components/contentLoader/ContentLoader";
 const ReadMore = () => {
   const id = useParams().id;
   const dispatch = useAppDispatch();
-  const [loading, setLoading] = useState(true);
   const blogData = useTypedSelector((state) => state.blogs.singleBlog);
   const loadingBlog = useTypedSelector(
     (state) => state.blogs.singleBlogLoading
@@ -27,15 +26,10 @@ const ReadMore = () => {
 
   useEffect(() => {
     dispatch(getSinglePostAction({ id, onSuccess, onError }));
-    setLoading(false);
   }, [dispatch, id]);
 
-  const onSuccess = () => {
-    setLoading(false);
-  };
-  const onError = () => {
-    setLoading(false);
-  };
+  const onSuccess = () => {};
+  const onError = () => {};
 
   return (
     <GeneralContentWrapper>

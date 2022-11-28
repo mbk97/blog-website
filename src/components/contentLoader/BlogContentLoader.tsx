@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import Skeleton from "@mui/material/Skeleton";
-import Stack from "@mui/material/Stack";
 
 const Wrapper = styled.div`
   display: flex;

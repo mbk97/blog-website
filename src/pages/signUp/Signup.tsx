@@ -34,7 +34,8 @@ const Signup = () => {
   console.log(data);
   const { email, name, password } = data;
 
-  const disabled = !name || !email || !password || password.length < 5;
+  const disabled =
+    !name || !email || !password || password.length < 5 || loading;
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;

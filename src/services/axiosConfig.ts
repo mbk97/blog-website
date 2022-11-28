@@ -5,11 +5,9 @@ import axios, {
   AxiosResponse,
 } from "axios";
 import { getFromLocalStorage } from "../utils/storage";
-// const BASE_URL = process.env.BASE_URL;
-const BASE_URL = "https://blog-website-api.vercel.app/";
 
 const axiosInstance: AxiosInstance = axios.create({
-  baseURL: BASE_URL,
+  baseURL: process.env.REACT_APP_BASE_URL,
   headers: {
     "Content-Type": "application/json",
     Accept: "application/json, text/plain, */*",

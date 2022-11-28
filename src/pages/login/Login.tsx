@@ -33,6 +33,8 @@ const Login = () => {
 
   const { email, password } = data;
 
+  const disable = !email || !password || loading;
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setData({
@@ -95,7 +97,7 @@ const Login = () => {
             />
           </InputContainer>
           <ButtonWrapper>
-            <CustomButton onClick={handleClick}>
+            <CustomButton onClick={handleClick} disabled={disable}>
               {loading ? <Spinner /> : "Submit"}
             </CustomButton>
             <div>

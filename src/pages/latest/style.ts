@@ -98,4 +98,5 @@ export const ActionBtnFlex = styled.div`
 export const ActionIcons = styled.div`
   margin-top: 15px;
   cursor: pointer;
+  display: flex;
 `;

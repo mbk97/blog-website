@@ -28,6 +28,8 @@ const CreatePost = () => {
 
   const { title, description } = data;
 
+  const disable = !title || !description || loading;
+
   console.log(description);
   const handleInputChange = (
     e:
@@ -52,7 +54,7 @@ const CreatePost = () => {
     navigate("/dashboard/latest");
   };
   const onError = (error: any) => {
-    dispatch(openSnackBar("success", error));
+    dispatch(openSnackBar("error", error));
     setLoading(false);
   };
 
@@ -87,7 +89,7 @@ const CreatePost = () => {
         </PostInputContainer>
       </ContentContainer>
       <BtnWrapper>
-        <CustomButton onClick={handleCreateBlog}>
+        <CustomButton onClick={handleCreateBlog} disabled={disable}>
           {loading ? <Spinner /> : "Create"}
         </CustomButton>
       </BtnWrapper>

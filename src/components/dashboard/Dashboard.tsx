@@ -17,7 +17,7 @@ const Dashboard = () => {
           <Routes>
             <Route path="/latest" element={<Latest />} />
             <Route path="/create" element={<CreatePost />} />
-            <Route path="/read-more" element={<ReadMore />} />
+            <Route path="/read-more/:id" element={<ReadMore />} />
           </Routes>
         </React.Fragment>
       </Layout>

@@ -34,7 +34,7 @@ const ForgotPassword = () => {
             <ButtonWrapper>
               <CustomButton>Submit</CustomButton>
               <LinkText>
-                <AuthLink to="/login">Go Back to login</AuthLink>
+                <AuthLink to="/">Go Back to login</AuthLink>
               </LinkText>
             </ButtonWrapper>
           </ForgotWrapper>

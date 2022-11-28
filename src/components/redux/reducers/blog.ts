@@ -5,6 +5,7 @@ const initialState: getBlogState = {
   blogs: [],
   singleBlog: {},
   singleBlogLoading: false,
+  getBlogLoading: false,
   createBlog: {
     title: "",
     description: "",
@@ -19,6 +20,11 @@ export const blogReducer = (state = initialState, { type, payload }: any) => {
         blogs: payload,
       };
 
+    case blogTypes.GET_POST_LOADING:
+      return {
+        ...state,
+        getBlogLoading: payload,
+      };
     case blogTypes.GET_SINGLE_POST_LOADING:
       return {
         ...state,

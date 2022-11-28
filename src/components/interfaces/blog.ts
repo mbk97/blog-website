@@ -3,6 +3,7 @@ export interface getBlogState {
   createBlog: ICreate;
   singleBlog: {};
   singleBlogLoading: boolean;
+  getBlogLoading: boolean;
 }
 
 export interface ICreate {

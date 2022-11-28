@@ -1,9 +1,6 @@
 import styled from "styled-components";
 
 export const EditWrapper = styled.div`
-  background: #272727;
-  height: auto;
-
   @media (max-width: 1200px) {
     height: 100vh;
   }
@@ -12,6 +9,7 @@ export const EditWrapper = styled.div`
 export const EditContentWrapper = styled.div`
   display: flex;
   justify-content: center;
+  background: #272727;
 `;
 
 export const EditContent = styled.div`

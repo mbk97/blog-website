@@ -28,6 +28,8 @@ const CreatePost = () => {
 
   const { title, description } = data;
 
+  const disable = !title || !description || loading;
+
   console.log(description);
   const handleInputChange = (
     e:
@@ -87,7 +89,7 @@ const CreatePost = () => {
         </PostInputContainer>
       </ContentContainer>
       <BtnWrapper>
-        <CustomButton onClick={handleCreateBlog}>
+        <CustomButton onClick={handleCreateBlog} disabled={disable}>
           {loading ? <Spinner /> : "Create"}
         </CustomButton>
       </BtnWrapper>

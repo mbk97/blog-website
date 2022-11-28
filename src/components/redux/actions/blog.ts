@@ -12,11 +12,14 @@ import { blogTypes } from "../actionTypes/blog";
 export const getBlogAction = () => {
   return async (dispatch: any) => {
     try {
+      dispatch(action(blogTypes.GET_POST_LOADING, true));
       const res = await getUserBlogRequest();
       console.log(res.data.blogs);
       dispatch(action(blogTypes.GET_USER_BLOG, res.data.blogs));
+      dispatch(action(blogTypes.GET_POST_LOADING, false));
     } catch (error) {
       getErrorMessage(error);
+      dispatch(action(blogTypes.GET_POST_LOADING, false));
     }
   };
 };

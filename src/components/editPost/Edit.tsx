@@ -32,6 +32,8 @@ const Edit = ({ handleCloseEdit }: IProps) => {
 
   const [loading, setLoading] = useState<boolean>(false);
 
+  const disable = loading;
+
   const handleInputChange = (
     e:
       | React.ChangeEvent<HTMLInputElement>
@@ -116,7 +118,7 @@ const Edit = ({ handleCloseEdit }: IProps) => {
             </PostInputContainer>
           </ContentContainer>
           <BtnWrapper>
-            <CustomButton onClick={handleEdit}>
+            <CustomButton onClick={handleEdit} disabled={disable}>
               {loading ? <Spinner /> : "Edit"}
             </CustomButton>
           </BtnWrapper>

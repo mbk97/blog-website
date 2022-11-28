@@ -5,8 +5,6 @@ import axios, {
   AxiosResponse,
 } from "axios";
 import { getFromLocalStorage } from "../utils/storage";
-// const BASE_URL = ;
-// const BASE_URL = "https://blog-api-web-1.onrender.com/";
 
 const axiosInstance: AxiosInstance = axios.create({
   baseURL: process.env.REACT_APP_BASE_URL,

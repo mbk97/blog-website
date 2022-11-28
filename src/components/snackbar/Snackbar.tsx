@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { closeSnackBar } from "../redux/actions/snackbarActions";
 import { HiOutlineBell } from "react-icons/hi";
@@ -15,12 +15,14 @@ const Snackbar = () => {
     (state: any) => state.snackBarState.messageType
   );
 
-  let TIMER: any;
-  const handleTimeout = () => {
-    TIMER = setTimeout(() => {
+  let TIMER = setTimeout(() => {
+    dispatch(closeSnackBar());
+  }, 3000);
+  const handleTimeout = useCallback(() => {
+    setTimeout(() => {
       dispatch(closeSnackBar());
     }, 3000);
-  };
+  }, [dispatch]);
 
   useEffect(() => {
     if (SHOW) {
@@ -29,7 +31,7 @@ const Snackbar = () => {
     return () => {
       clearTimeout(TIMER);
     };
-  }, [SHOW, TIMER]);
+  }, [SHOW, TIMER, handleTimeout]);
 
   return (
     SHOW && (

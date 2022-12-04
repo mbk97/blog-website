@@ -26,8 +26,10 @@ const Navbar = () => {
       <NavItemsWrapper>
         <TopItems>
           <NameWrapper>
-            <NameLogo>{nameSymbol}</NameLogo>
-            <NameTitle>{name}</NameTitle>
+            <DashboardLink to="/dashboard/latest">
+              <NameLogo>{nameSymbol}</NameLogo>
+              <NameTitle>{name}</NameTitle>
+            </DashboardLink>
           </NameWrapper>
           <TrendTextWrapper>
             <DashboardLink to="/dashboard/latest">

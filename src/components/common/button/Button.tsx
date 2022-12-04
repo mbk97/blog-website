@@ -24,6 +24,12 @@ const Button = styled.button`
   justify-content: center;
 `;
 
+export const SmallCustomBtn = styled(Button)`
+  width: 120px;
+  font-size: 16px;
+  height: 40px;
+`;
+
 const CustomButton = ({ children, onClick, disabled }: btnProps) => {
   return (
     <Button

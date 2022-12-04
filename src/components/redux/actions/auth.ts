@@ -1,5 +1,6 @@
 import { action } from "typesafe-actions";
 import {
+  forgotPasswordRequest,
   loginRequest,
   registerUserRequest,
 } from "../../../services/requests/auth";
@@ -51,4 +52,16 @@ const loginAction = ({ data, onSuccess, onError }: any) => {
   };
 };
 
-export { registerAction, loginAction };
+const forgotPasswordAction = ({ data, onSuccess, onError }: any) => {
+  return async (dispatch: any) => {
+    try {
+      const response = await forgotPasswordRequest(data);
+      dispatch(action(authTypes.FORGOT_PASSWORD));
+      onSuccess(response.data.message);
+    } catch (error) {
+      onError(getErrorMessage(error));
+    }
+  };
+};
+
+export { registerAction, loginAction, forgotPasswordAction };

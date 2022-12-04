@@ -2,7 +2,7 @@ import {
   ILoginData,
   IRegisterSubmitData,
 } from "../../components/interfaces/auth";
-import { loginUserUrl, registerUserUrl } from "../api";
+import { forgotpasswordUrl, loginUserUrl, registerUserUrl } from "../api";
 import { axiosInstance } from "../axiosConfig";
 
 const registerUserRequest = (data: IRegisterSubmitData) => {
@@ -13,4 +13,8 @@ const loginRequest = (data: ILoginData) => {
   return axiosInstance.post(loginUserUrl, data);
 };
 
-export { registerUserRequest, loginRequest };
+const forgotPasswordRequest = (data: string) => {
+  return axiosInstance.post(forgotpasswordUrl, data);
+};
+
+export { registerUserRequest, loginRequest, forgotPasswordRequest };

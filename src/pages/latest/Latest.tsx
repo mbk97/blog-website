@@ -1,5 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { GeneralContentWrapper, Line, TitleContainer } from "../../GlobalStyle";
+import {
+  DashboardLink,
+  GeneralContentWrapper,
+  Line,
+  TitleContainer,
+} from "../../GlobalStyle";
 import {
   LatestText,
   LatestTitle,
@@ -37,12 +42,14 @@ import { ICreate } from "../../components/interfaces/blog";
 import { saveToLocalStorage } from "../../utils/storage";
 import { Link } from "react-router-dom";
 import BlogContentLoader from "../../components/contentLoader/BlogContentLoader";
+import useUserData from "../../hooks/useUserData";
+import { SmallCustomBtn } from "../../components/common/button/Button";
 
 const Latest = () => {
   const dispatch = useAppDispatch();
   const blogData = useTypedSelector((state) => state?.blogs?.blogs);
   const blogLoading = useTypedSelector((state) => state.blogs.getBlogLoading);
-  console.log(blogLoading);
+  console.log(blogData?.length);
   const day = moment(blogData.created_at).format("D");
   const month = moment(blogData.created_at).format("MMMM");
   const year = moment(blogData.created_at).format("YYYY");
@@ -78,6 +85,8 @@ const Latest = () => {
     dispatch(getBlogAction());
   }, [dispatch]);
 
+  const data = useUserData();
+
   return (
     <GeneralContentWrapper>
       <TitleContainer>
@@ -91,7 +100,28 @@ const Latest = () => {
       </TitleContainer>
       {blogLoading && <BlogContentLoader />}
 
+      {!blogLoading && blogData?.length === 0 ? (
+        <div
+          style={{
+            marginTop: "20px",
+          }}
+        >
+          <LatestText>Hello {data.name}, you have no post yet.</LatestText>
+          <div
+            style={{
+              marginTop: "20px",
+              width: "150px",
+            }}
+          >
+            <DashboardLink to="/dashboard/create">
+              <SmallCustomBtn>Create post</SmallCustomBtn>
+            </DashboardLink>
+          </div>
+        </div>
+      ) : null}
+
       {!blogLoading &&
+        blogData?.length !== 0 &&
         blogData?.map((item: any) => {
           return (
             <LatestContentWrapper key={item._id}>

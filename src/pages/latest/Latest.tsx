@@ -18,8 +18,8 @@ import {
   // MailWrapper,
   MobileDateAndMailWrapper,
   Span,
-  TagPill,
-  TagWrapper,
+  // TagPill,
+  // TagWrapper,
   TextContentContainer,
   ActionBtnFlex,
   ActionIcons,
@@ -150,9 +150,9 @@ const Latest = () => {
                   </DateText>
                 </MobileDateAndMailWrapper>
                 <ActionBtnFlex>
-                  <TagWrapper>
+                  {/* <TagWrapper>
                     <TagPill>#Tag</TagPill>
-                  </TagWrapper>
+                  </TagWrapper> */}
                   <ActionIcons>
                     {deletedId === item._id ? (
                       <Spinner />

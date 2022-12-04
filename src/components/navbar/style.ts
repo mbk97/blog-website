@@ -109,6 +109,7 @@ export const NavTitle = styled.p`
 
 export const NameTitle = styled(NavTitle)`
   font-size: 12px;
+  text-align: center;
 `;
 
 export const TrendTextWrapper = styled.div`

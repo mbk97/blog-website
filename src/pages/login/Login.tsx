@@ -107,11 +107,11 @@ const Login = () => {
                   <AuthLink to="/signup">sign-up</AuthLink>
                 </ColoredText>{" "}
               </LinkText>
-              <LinkText>
+              {/* <LinkText>
                 <ColoredText>
                   <AuthLink to="/forgot-password"> Forgot password?</AuthLink>
                 </ColoredText>
-              </LinkText>
+              </LinkText> */}
             </div>
           </ButtonWrapper>
         </AuthInputWrapper>

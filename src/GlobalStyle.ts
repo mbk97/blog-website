@@ -144,8 +144,10 @@ export const Layout = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-top: 2rem;
   @media (max-width: 900px) {
     flex-direction: column-reverse;
+    margin-top: 1rem;
   }
 `;
 

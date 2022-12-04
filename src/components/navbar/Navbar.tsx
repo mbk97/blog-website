@@ -36,7 +36,7 @@ const Navbar = () => {
               <NavIcon>
                 <BiTrendingUp className="icon" />
               </NavIcon>
-              <NavTitle>Trending</NavTitle>
+              <NavTitle>Latest</NavTitle>
             </DashboardLink>
           </TrendTextWrapper>
         </TopItems>

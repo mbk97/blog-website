@@ -57,10 +57,12 @@ export const createBlogAction = ({ data, onSuccess, onError }: any) => {
 export const editUserBlogAction = ({ _id, data, onSuccess, onError }: any) => {
   return async (dispatch: any) => {
     try {
+      const id = _id;
       const response = await editUserBlogPost(_id, data);
       console.log(response, "Edit respone here");
       onSuccess(response.data.message);
       dispatch(getBlogAction());
+      dispatch(getSinglePostAction({ id }));
     } catch (error) {
       console.log(error, "Edit Error here");
       onError(getErrorMessage(error));

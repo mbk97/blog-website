@@ -59,11 +59,9 @@ const Signup = () => {
     setLoading(false);
   };
 
-  useEffect(() => {
-    if (password && password.length < 5) {
-      dispatch(openSnackBar("error", "password is too short"));
-    }
-  }, [password, password.length, dispatch]);
+  if (password.length < 5) {
+    dispatch(openSnackBar("error", "password is too short"));
+  }
 
   return (
     <div>

@@ -9,6 +9,7 @@ export const ContentContainer = styled.div`
   @media (max-width: 600px) {
     padding: 10px;
     width: 100%;
+    height: auto;
   }
 `;
 

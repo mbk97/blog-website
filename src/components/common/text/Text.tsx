@@ -45,7 +45,6 @@ const LatestTitle = styled.h2`
   word-wrap: break-word;
   /* width: 50rem; */
 
-
   ::first-letter {
     text-transform: uppercase;
   }
@@ -71,8 +70,7 @@ const LatestText = styled.p`
     font-weight: 400;
     font-size: 16px;
     line-height: 20px;
-    /* width: 300px; */
-
+    width: 90vw;
   }
 `;
 

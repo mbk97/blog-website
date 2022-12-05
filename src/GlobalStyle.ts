@@ -167,5 +167,6 @@ export const GeneralContentWrapper = styled.div`
 
   @media (max-width: 600px) {
     margin: 20px;
+    /* width: 100%; */
   }
 `;

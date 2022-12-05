@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { EditWrapper, EditContentWrapper, EditContent } from "./style";
-import AppBar from "@mui/material/AppBar";
 import { TitleContainer } from "../../GlobalStyle";
 import { PageTitle } from "../common/text/Text";
 import { AiOutlineClose } from "react-icons/ai";
@@ -72,11 +71,15 @@ const Edit = ({ handleCloseEdit }: IProps) => {
 
   return (
     <EditWrapper>
-      <AppBar
+      <div
         style={{
           height: "70px",
           background: "transparent",
           padding: "20px",
+          backgroundColor: "#272727",
+          borderBottom: "1px solid #6eeb83",
+          position: "sticky",
+          top: 0,
         }}
       >
         <TitleContainer>
@@ -95,7 +98,7 @@ const Edit = ({ handleCloseEdit }: IProps) => {
             />
           </React.Fragment>
         </TitleContainer>
-      </AppBar>
+      </div>
       <EditContentWrapper>
         <EditContent>
           <ContentContainer>

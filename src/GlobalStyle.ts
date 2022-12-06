@@ -41,7 +41,7 @@ export const AuthLeftContent = styled.div`
   flex: 30%;
   height: 100vh;
 
-  @media (max-width: 900px) {
+  @media (max-width: 1200px) {
     display: none;
   }
 `;
@@ -52,7 +52,7 @@ export const AuthRightContent = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  @media (max-width: 900px) {
+  @media (max-width: 1200px) {
     flex: 100%;
     display: flex;
     align-items: center;

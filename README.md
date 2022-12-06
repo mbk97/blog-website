@@ -26,9 +26,9 @@ The link to the live project https://blog-website-liart.vercel.app/
 
 # Technologies
 
-React js
-Css
-Styled components
+React js,
+Css,
+Styled components,
 Material UI
 
 # Setup

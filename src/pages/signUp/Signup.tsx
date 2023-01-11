@@ -35,7 +35,7 @@ const Signup = () => {
   const { email, name, password } = data;
 
   const disabled =
-    !name || !email || !password || password.length < 5 || loading;
+    !name || !email || !password || password.length < 6 || loading;
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -58,10 +58,6 @@ const Signup = () => {
     dispatch(openSnackBar("error", error));
     setLoading(false);
   };
-
-  if (password.length < 5) {
-    dispatch(openSnackBar("error", "password is too short"));
-  }
 
   return (
     <div>

@@ -6,7 +6,7 @@ export const getUserBlogRequest = () => {
   return axiosInstance.get(blogPost);
 };
 
-export const getSinglePost = (id: string) => {
+export const getSinglePost = ({ id }: any) => {
   return axiosInstance.get(`${blogPost}/${id}`);
 };
 
@@ -18,6 +18,6 @@ export const deleteUserBlogPost = (id: string) => {
   return axiosInstance.delete(`${blogPost}/${id}`);
 };
 
-export const editUserBlogPost = (_id: string, data: ICreate) => {
+export const editUserBlogPost = ({ _id, data }: any) => {
   return axiosInstance.put(`${blogPost}/${_id}`, data);
 };

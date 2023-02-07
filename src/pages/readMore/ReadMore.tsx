@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { GeneralContentWrapper } from "../../GlobalStyle";
 import { CustomTitle } from "../../components/common/text/Text";
 import {
@@ -6,16 +6,9 @@ import {
   ReadMoreSmallText,
   ReadMoreUserDetails,
 } from "./style";
-import { useNavigate, useParams } from "react-router-dom";
-import {
-  deleteBlogAction,
-  getSinglePostAction,
-} from "../../components/redux/actions/blog";
-import { useAppDispatch } from "../../components/redux/store";
-import { useTypedSelector } from "../../components/redux/reducers/rootReducer";
+import { useParams } from "react-router-dom";
 import moment from "moment";
 import ContentLoader from "../../components/contentLoader/ContentLoader";
-import { openSnackBar } from "../../components/redux/actions/snackbarActions";
 import { Dialog } from "@mui/material";
 import Edit from "../../components/editPost/Edit";
 import Spinner from "../../components/spinner/Spinner";
@@ -23,18 +16,21 @@ import { MdDeleteForever } from "react-icons/md";
 import { AiFillEdit } from "react-icons/ai";
 import { ActionIcons } from "../latest/style";
 import { saveToLocalStorage } from "../../utils/storage";
+import {
+  useDeleteUserBlog,
+  useReadSingleBlogQuery,
+} from "../../services/queries/blogs";
+import { ICreate } from "../../components/interfaces/blog";
 
 const ReadMore = () => {
-  const id = useParams()?.id;
-  const dispatch = useAppDispatch();
-  const blogData = useTypedSelector((state) => state.blogs.singleBlog);
-  const loadingBlog = useTypedSelector(
-    (state) => state.blogs.singleBlogLoading
-  );
-  const [openEdit, setOpenEdit] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const id = useParams().id as any;
 
-  const navigate = useNavigate();
+  const [openEdit, setOpenEdit] = useState(false);
+  const { data, isLoading } = useReadSingleBlogQuery(id);
+  const { mutate } = useDeleteUserBlog();
+
+  const blogData = data?.data.singleData;
+  console.log(blogData, "HERE");
 
   const handleOpenEdit = () => {
     setOpenEdit(true);
@@ -45,35 +41,20 @@ const ReadMore = () => {
   };
 
   const handleDelete = (id: string) => {
-    dispatch(deleteBlogAction({ id, onSuccess, onError }));
-    setLoading(true);
+    mutate(id);
   };
 
-  const onSuccess = (data: any) => {
-    dispatch(openSnackBar("success", data));
-    setLoading(false);
-    navigate("/dashboard/latest");
-  };
-  const onError = (error: string) => {
-    dispatch(openSnackBar("error", error));
-    setLoading(false);
-  };
+  const year = moment(blogData?.created_at).format("D-MMMM-YYYY");
 
-  const year = moment(blogData.created_at).format("D-MMMM-YYYY");
-
-  const saveEditItem = () => {
-    saveToLocalStorage("blogData", blogData);
+  const saveEditItem = (blogData: ICreate) => {
+    saveToLocalStorage("blogResult", blogData);
   };
-
-  useEffect(() => {
-    dispatch(getSinglePostAction({ id }));
-  }, [dispatch, id]);
 
   return (
     <>
       <GeneralContentWrapper>
-        {loadingBlog && <ContentLoader />}
-        {!loadingBlog && blogData && (
+        {isLoading && <ContentLoader />}
+        {!isLoading && blogData && (
           <>
             <CustomTitle>{blogData?.title}</CustomTitle>
             <ReadMoreUserDetails>
@@ -81,13 +62,13 @@ const ReadMore = () => {
             </ReadMoreUserDetails>
             <ReadMoreContentText>{blogData?.description}</ReadMoreContentText>
             <ActionIcons>
-              {loading ? (
+              {isLoading ? (
                 <Spinner />
               ) : (
                 <MdDeleteForever
                   color="#6eeb83"
                   size={30}
-                  onClick={() => handleDelete(blogData._id)}
+                  onClick={() => handleDelete(blogData?._id)}
                 />
               )}
               <AiFillEdit
@@ -95,7 +76,7 @@ const ReadMore = () => {
                 size={30}
                 onClick={() => {
                   handleOpenEdit();
-                  saveEditItem();
+                  saveEditItem(blogData);
                 }}
               />
             </ActionIcons>

@@ -5,7 +5,7 @@ import {
 import { forgotpasswordUrl, loginUserUrl, registerUserUrl } from "../api";
 import { axiosInstance } from "../axiosConfig";
 
-const registerUserRequest = (data: IRegisterSubmitData) => {
+const registerUserRequest = (data?: IRegisterSubmitData) => {
   return axiosInstance.post(registerUserUrl, data);
 };
 

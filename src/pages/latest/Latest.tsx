@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
   DashboardLink,
   GeneralContentWrapper,
@@ -14,27 +14,16 @@ import {
   DateAndMailContainer,
   DateText,
   LatestContentWrapper,
-  // MailText,
-  // MailWrapper,
   MobileDateAndMailWrapper,
   Span,
-  // TagPill,
-  // TagWrapper,
   TextContentContainer,
   ActionBtnFlex,
   ActionIcons,
 } from "./style";
 import Logout from "../../components/logout/Logout";
-import { useAppDispatch } from "../../components/redux/store";
-import {
-  deleteBlogAction,
-  getBlogAction,
-} from "../../components/redux/actions/blog";
-import { useTypedSelector } from "../../components/redux/reducers/rootReducer";
 import moment from "moment";
 import { MdDeleteForever } from "react-icons/md";
 import { AiFillEdit } from "react-icons/ai";
-import { openSnackBar } from "../../components/redux/actions/snackbarActions";
 import Spinner from "../../components/spinner/Spinner";
 import { Dialog } from "@mui/material";
 import Edit from "../../components/editPost/Edit";
@@ -44,18 +33,21 @@ import { Link } from "react-router-dom";
 import BlogContentLoader from "../../components/contentLoader/BlogContentLoader";
 import useUserData from "../../hooks/useUserData";
 import { SmallCustomBtn } from "../../components/common/button/Button";
+import {
+  useDeleteUserBlog,
+  useGetUserBlogQuery,
+} from "../../services/queries/blogs";
 
 const Latest = () => {
-  const dispatch = useAppDispatch();
-  const blogData = useTypedSelector((state) => state?.blogs?.blogs);
-  const blogLoading = useTypedSelector((state) => state.blogs.getBlogLoading);
-  console.log(blogData?.length);
-  const day = moment(blogData.created_at).format("D");
-  const month = moment(blogData.created_at).format("MMMM");
-  const year = moment(blogData.created_at).format("YYYY");
-  const monthText = month.slice(0, 3);
   const [deletedId, setDeletedId] = useState("");
   const [openEdit, setOpenEdit] = useState(false);
+  const { result: blogResult, isLoading } = useGetUserBlogQuery();
+  const { mutate } = useDeleteUserBlog();
+
+  const day = moment(blogResult?.created_at).format("D");
+  const month = moment(blogResult?.created_at).format("MMMM");
+  const year = moment(blogResult?.created_at).format("YYYY");
+  const monthText = month.slice(0, 3);
 
   const handleOpenEdit = () => {
     setOpenEdit(true);
@@ -66,26 +58,15 @@ const Latest = () => {
   };
 
   const handleDelete = (id: string) => {
-    dispatch(deleteBlogAction({ id, onSuccess, onError }));
     setDeletedId(id);
-  };
-
-  const onSuccess = (data: any) => {
-    dispatch(openSnackBar("success", data));
-  };
-  const onError = (error: string) => {
-    dispatch(openSnackBar("error", error));
+    mutate(id);
   };
 
   const saveEditItem = (item: ICreate) => {
-    saveToLocalStorage("blogData", item);
+    saveToLocalStorage("blogResult", item);
   };
 
-  useEffect(() => {
-    dispatch(getBlogAction());
-  }, [dispatch]);
-
-  const data = useUserData();
+  const userData = useUserData();
 
   return (
     <GeneralContentWrapper>
@@ -98,15 +79,15 @@ const Latest = () => {
           <Logout />
         </React.Fragment>
       </TitleContainer>
-      {blogLoading && <BlogContentLoader />}
+      {isLoading && <BlogContentLoader />}
 
-      {!blogLoading && blogData?.length === 0 ? (
+      {!isLoading && blogResult?.length === 0 ? (
         <div
           style={{
             marginTop: "20px",
           }}
         >
-          <LatestText>Hello {data.name}, you have no post yet.</LatestText>
+          <LatestText>Hello {userData?.name}, you have no post yet.</LatestText>
           <div
             style={{
               marginTop: "20px",
@@ -120,9 +101,9 @@ const Latest = () => {
         </div>
       ) : null}
 
-      {!blogLoading &&
-        blogData?.length !== 0 &&
-        blogData?.map((item: any) => {
+      {!isLoading &&
+        blogResult?.length !== 0 &&
+        blogResult?.map((item: any) => {
           return (
             <LatestContentWrapper key={item._id}>
               <DateAndMailContainer>
@@ -132,17 +113,16 @@ const Latest = () => {
               <TextContentContainer>
                 <LatestTitle>{item.title}</LatestTitle>
                 <LatestText>
-                  {item.description}{" "}
-                  {item.description.length > 100 && (
-                    <Link
-                      to={`/dashboard/read-more/${item._id}`}
-                      style={{
-                        textDecoration: "none",
-                      }}
-                    >
-                      <Span>...read more</Span>{" "}
-                    </Link>
-                  )}
+                  {item.description} {/* {item.description.length > 100 && ( */}
+                  <Link
+                    to={`/dashboard/read-more/${item._id}`}
+                    style={{
+                      textDecoration: "none",
+                    }}
+                  >
+                    <Span>...read more</Span>{" "}
+                  </Link>
+                  {/* )} */}
                 </LatestText>
                 <MobileDateAndMailWrapper>
                   <DateText>

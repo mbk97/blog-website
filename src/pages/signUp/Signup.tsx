@@ -16,26 +16,21 @@ import {
 import signupBg from "../../assets/images/sign_up.png";
 import CustomInput from "../../components/common/input/Input";
 import CustomButton from "../../components/common/button/Button";
-import { registerAction } from "../../components/redux/actions/auth";
-import { useAppDispatch } from "../../components/redux/store";
-import { openSnackBar } from "../../components/redux/actions/snackbarActions";
 import Spinner from "../../components/spinner/Spinner";
-import { useNavigate } from "react-router-dom";
+import { useRegisterUserMutation } from "../../services/queries/auth";
 
 const Signup = () => {
-  const navigate = useNavigate();
   const [data, setData] = useState<string | any>({
     name: "",
     email: "",
     password: "",
   });
-  const [loading, setLoading] = useState<boolean>(false);
-  const dispatch = useAppDispatch();
-  console.log(data);
+
+  const { mutate, isLoading } = useRegisterUserMutation();
   const { email, name, password } = data;
 
   const disabled =
-    !name || !email || !password || password.length < 6 || loading;
+    !name || !email || !password || password.length < 6 || isLoading;
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -43,20 +38,7 @@ const Signup = () => {
   };
 
   const handleSubmit = () => {
-    dispatch(registerAction({ data, onSuccess, onError }));
-    setLoading(true);
-    console.log("hello");
-  };
-
-  const onSuccess = (data: any) => {
-    dispatch(openSnackBar("success", data));
-    setLoading(false);
-    navigate("/dashboard/latest");
-  };
-
-  const onError = (error: string) => {
-    dispatch(openSnackBar("error", error));
-    setLoading(false);
+    mutate(data);
   };
 
   return (
@@ -98,7 +80,7 @@ const Signup = () => {
             </InputContainer>
             <ButtonWrapper>
               <CustomButton onClick={handleSubmit} disabled={disabled}>
-                {loading ? <Spinner /> : "Submit"}
+                {isLoading ? <Spinner /> : "Submit"}
               </CustomButton>
               <LinkText>
                 Already have an account?{" "}

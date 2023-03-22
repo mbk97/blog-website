@@ -16,24 +16,19 @@ import {
 import loginBg from "../../assets/images/login_bg.png";
 import CustomInput from "../../components/common/input/Input";
 import CustomButton from "../../components/common/button/Button";
-import { loginAction } from "../../components/redux/actions/auth";
-import { useAppDispatch } from "../../components/redux/store";
-import { openSnackBar } from "../../components/redux/actions/snackbarActions";
-import { useNavigate } from "react-router-dom";
 import Spinner from "../../components/spinner/Spinner";
+import { useLoginUserMutation } from "../../services/queries/auth";
 
 const Login = () => {
-  const navigate = useNavigate();
-  const dispatch = useAppDispatch();
   const [data, setData] = useState<string | any>({
     email: "",
     password: "",
   });
-  const [loading, setLoading] = useState<boolean>(false);
+  const { mutate, isLoading } = useLoginUserMutation();
 
   const { email, password } = data;
 
-  const disable = !email || !password || loading;
+  const disable = !email || !password || isLoading;
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -44,23 +39,7 @@ const Login = () => {
   };
 
   const handleClick = () => {
-    setLoading(true);
-    dispatch(loginAction({ data, onSuccess, onError }));
-  };
-
-  const onSuccess = (res: any) => {
-    dispatch(openSnackBar("success", res.data.message));
-    setLoading(false);
-    navigate("/dashboard/latest");
-
-    if (!res) {
-      navigate("/signup");
-    }
-  };
-  const onError = (error: string) => {
-    dispatch(openSnackBar("error", error));
-    console.log(error);
-    setLoading(false);
+    mutate(data);
   };
 
   return (
@@ -91,9 +70,10 @@ const Login = () => {
               value={password}
             />
           </InputContainer>
+
           <ButtonWrapper>
             <CustomButton onClick={handleClick} disabled={disable}>
-              {loading ? <Spinner /> : "Submit"}
+              {isLoading ? <Spinner /> : "Submit"}
             </CustomButton>
             <div>
               <LinkText>

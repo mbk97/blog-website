@@ -13,25 +13,21 @@ import {
   TitleInputContainer,
 } from "../../pages/createPost/style";
 import { getFromLocalStorage } from "../../utils/storage";
-import { useAppDispatch } from "../redux/store";
-import { editUserBlogAction } from "../redux/actions/blog";
-import { openSnackBar } from "../redux/actions/snackbarActions";
 import Spinner from "../spinner/Spinner";
+import { useEditUserBlog } from "../../services/queries/blogs";
 
 interface IProps {
   handleCloseEdit: () => void;
 }
 
 const Edit = ({ handleCloseEdit }: IProps) => {
-  const dispatch = useAppDispatch();
   const [data, setData] = useState<any>({
     title: "",
     description: "",
   });
 
-  const [loading, setLoading] = useState<boolean>(false);
-
-  const disable = loading;
+  const { mutate, isLoading } = useEditUserBlog();
+  const disable = isLoading;
 
   const handleInputChange = (
     e:
@@ -45,28 +41,19 @@ const Edit = ({ handleCloseEdit }: IProps) => {
     });
   };
 
-  const { title, description, _id } = getFromLocalStorage("blogData");
+  const { title, description, _id } = getFromLocalStorage("blogResult");
+
+  console.log(getFromLocalStorage("blogResult"));
 
   useEffect(() => {
     setData({
       title: title,
       description: description,
     });
-  }, [title, description]);
+  }, [title, description, _id]);
 
   const handleEdit = () => {
-    dispatch(editUserBlogAction({ _id, data, onSuccess, onError }));
-    setLoading(true);
-  };
-
-  const onSuccess = (data: string) => {
-    setLoading(false);
-    dispatch(openSnackBar("success", data));
-    handleCloseEdit();
-  };
-  const onError = (error: string) => {
-    setLoading(false);
-    dispatch(openSnackBar("error", error));
+    mutate({ _id, data });
   };
 
   return (
@@ -122,7 +109,7 @@ const Edit = ({ handleCloseEdit }: IProps) => {
           </ContentContainer>
           <BtnWrapper>
             <CustomButton onClick={handleEdit} disabled={disable}>
-              {loading ? <Spinner /> : "Edit"}
+              {isLoading ? <Spinner /> : "Edit"}
             </CustomButton>
           </BtnWrapper>
         </EditContent>

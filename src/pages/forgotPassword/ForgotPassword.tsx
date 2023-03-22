@@ -14,7 +14,7 @@ import {
 import CustomInput from "../../components/common/input/Input";
 import CustomButton from "../../components/common/button/Button";
 import { useAppDispatch } from "../../components/redux/store";
-import { forgotPasswordAction } from "../../components/redux/actions/auth";
+// import { forgotPasswordAction } from "../../components/redux/actions/auth";
 import { openSnackBar } from "../../components/redux/actions/snackbarActions";
 import Spinner from "../../components/spinner/Spinner";
 
@@ -37,18 +37,7 @@ const ForgotPassword = () => {
   };
 
   const handleSubmit = () => {
-    dispatch(forgotPasswordAction({ data, onSuccess, onError }));
     setLoading(true);
-  };
-
-  const onSuccess = (data: string) => {
-    setLoading(false);
-    dispatch(openSnackBar("success", data));
-  };
-
-  const onError = (error: string) => {
-    setLoading(false);
-    dispatch(openSnackBar("error", error));
   };
 
   return (

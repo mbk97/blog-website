@@ -112,27 +112,28 @@ const Latest = () => {
               </DateAndMailContainer>
               <TextContentContainer>
                 <LatestTitle>{item.title}</LatestTitle>
-                <LatestText>
-                  {item.description} {/* {item.description.length > 100 && ( */}
-                  <Link
-                    to={`/dashboard/read-more/${item._id}`}
-                    style={{
-                      textDecoration: "none",
-                    }}
-                  >
-                    <Span>...read more</Span>{" "}
-                  </Link>
-                  {/* )} */}
-                </LatestText>
+                {item.description.length > 500 ? (
+                  <LatestText>
+                    {item.description.slice(0, 500)}{" "}
+                    <Link
+                      to={`/dashboard/read-more/${item._id}`}
+                      style={{
+                        textDecoration: "none",
+                      }}
+                    >
+                      <Span>...read more</Span>{" "}
+                    </Link>
+                  </LatestText>
+                ) : (
+                  <LatestText>{item.description} </LatestText>
+                )}
+
                 <MobileDateAndMailWrapper>
                   <DateText>
                     {day} {monthText} {year}
                   </DateText>
                 </MobileDateAndMailWrapper>
                 <ActionBtnFlex>
-                  {/* <TagWrapper>
-                    <TagPill>#Tag</TagPill>
-                  </TagWrapper> */}
                   <ActionIcons>
                     {deletedId === item._id ? (
                       <Spinner />

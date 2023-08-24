@@ -74,4 +74,9 @@ const LatestText = styled.p`
   }
 `;
 
-export { CustomTitle, PageTitle, LatestTitle, LatestText };
+const AuthErrorText = styled(LatestText)`
+  color: red;
+  font-size: 16px;
+  margin-bottom: 30px;
+`;
+export { CustomTitle, PageTitle, LatestTitle, LatestText, AuthErrorText };

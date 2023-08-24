@@ -18,6 +18,11 @@ import CustomInput from "../../components/common/input/Input";
 import CustomButton from "../../components/common/button/Button";
 import Spinner from "../../components/spinner/Spinner";
 import { useLoginUserMutation } from "../../services/queries/auth";
+import {
+  passwordValidator,
+  checkPasswordValidator,
+} from "../../utils/validator";
+import { AuthErrorText } from "../../components/common/text/Text";
 
 const Login = () => {
   const [data, setData] = useState<string | any>({
@@ -28,7 +33,8 @@ const Login = () => {
 
   const { email, password } = data;
 
-  const disable = !email || !password || isLoading;
+  const disable =
+    !email || !password || isLoading || !checkPasswordValidator(password);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -38,8 +44,16 @@ const Login = () => {
     });
   };
 
+  const payload = {
+    email: email,
+    password: password,
+  };
+
   const handleClick = () => {
-    mutate(data);
+    if (!disable || !checkPasswordValidator(password)) {
+      mutate(payload);
+    }
+    console.log(payload);
   };
 
   return (
@@ -70,7 +84,7 @@ const Login = () => {
               value={password}
             />
           </InputContainer>
-
+          <AuthErrorText>{passwordValidator(password)}</AuthErrorText>
           <ButtonWrapper>
             <CustomButton onClick={handleClick} disabled={disable}>
               {isLoading ? <Spinner /> : "Submit"}

@@ -12,7 +12,6 @@ const useLoginUserMutation = () => {
 
   const { mutate, isLoading } = useMutation(loginRequest, {
     onSuccess(data) {
-      console.log(data);
       dispatch(openSnackBar("success", data.data.message));
       saveToLocalStorage("user_data", data.data.user);
       saveToLocalStorage("access_token", data.data.user.token);
@@ -34,6 +33,7 @@ const useRegisterUserMutation = () => {
 
   const { mutate, isLoading } = useMutation(registerUserRequest, {
     onSuccess(data) {
+      console.log(data, "Data here");
       dispatch(openSnackBar("success", data.data.message));
       saveToLocalStorage("user_data", data.data.user);
       saveToLocalStorage("access_token", data.data.user.access_token);

@@ -18,27 +18,47 @@ import CustomInput from "../../components/common/input/Input";
 import CustomButton from "../../components/common/button/Button";
 import Spinner from "../../components/spinner/Spinner";
 import { useRegisterUserMutation } from "../../services/queries/auth";
+import {
+  checkPasswordValidator,
+  passwordValidator,
+} from "../../utils/validator";
+import { AuthErrorText } from "../../components/common/text/Text";
 
 const Signup = () => {
-  const [data, setData] = useState<string | any>({
+  const [inputData, setInputData] = useState<string | any>({
     name: "",
     email: "",
     password: "",
+    confirmPassword: "",
   });
 
   const { mutate, isLoading } = useRegisterUserMutation();
-  const { email, name, password } = data;
+  const { email, name, password, confirmPassword } = inputData;
 
-  const disabled =
-    !name || !email || !password || password.length < 6 || isLoading;
+  const data = {
+    email: email,
+    name: name,
+    password: password,
+  };
+
+  const disable =
+    !name ||
+    !email ||
+    !password ||
+    !confirmPassword ||
+    confirmPassword !== password ||
+    isLoading ||
+    !checkPasswordValidator(password);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setData({ ...data, [name]: value });
+    setInputData({ ...inputData, [name]: value });
   };
 
   const handleSubmit = () => {
-    mutate(data);
+    if (!disable) {
+      mutate(data);
+    }
   };
 
   return (
@@ -78,8 +98,21 @@ const Signup = () => {
                 value={password}
               />
             </InputContainer>
+            <AuthErrorText>{passwordValidator(password)}</AuthErrorText>
+            <InputContainer>
+              <CustomInput
+                type="password"
+                placeholder="Confirm your password"
+                onChange={handleChange}
+                name="confirmPassword"
+                value={confirmPassword}
+              />
+            </InputContainer>
+            {confirmPassword && confirmPassword !== password ? (
+              <AuthErrorText>passwords do not match</AuthErrorText>
+            ) : null}
             <ButtonWrapper>
-              <CustomButton onClick={handleSubmit} disabled={disabled}>
+              <CustomButton onClick={handleSubmit} disabled={disable}>
                 {isLoading ? <Spinner /> : "Submit"}
               </CustomButton>
               <LinkText>

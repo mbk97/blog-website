@@ -32,7 +32,7 @@ const Edit = ({ handleCloseEdit }: IProps) => {
   const handleInputChange = (
     e:
       | React.ChangeEvent<HTMLInputElement>
-      | React.ChangeEvent<HTMLTextAreaElement>
+      | React.ChangeEvent<HTMLTextAreaElement>,
   ) => {
     const { name, value } = e.target;
     setData({
@@ -42,8 +42,6 @@ const Edit = ({ handleCloseEdit }: IProps) => {
   };
 
   const { title, description, _id } = getFromLocalStorage("blogResult");
-
-  console.log(getFromLocalStorage("blogResult"));
 
   useEffect(() => {
     setData({

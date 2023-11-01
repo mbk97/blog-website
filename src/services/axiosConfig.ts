@@ -31,12 +31,11 @@ const onResponse = (response: AxiosResponse): AxiosResponse => {
 };
 
 const onResponseError = async (error: AxiosError) => {
-  const statusCode = error.response!.status;
+  const statusCode = error.response?.status;
   if (statusCode === 401) {
     localStorage.clear();
     window.location.href = "/";
   }
-  return Promise.reject(error);
 };
 
 axiosInstance.interceptors.request.use(onRequest, onRequestError);

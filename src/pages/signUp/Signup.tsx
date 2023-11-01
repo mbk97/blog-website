@@ -21,10 +21,14 @@ import { useRegisterUserMutation } from "../../services/queries/auth";
 import {
   checkPasswordValidator,
   passwordValidator,
+  validateEmail,
 } from "../../utils/validator";
 import { AuthErrorText } from "../../components/common/text/Text";
+import { useAppDispatch } from "../../components/redux/store";
+import { openSnackBar } from "../../components/redux/actions/snackbarActions";
 
 const Signup = () => {
+  const dispatch = useAppDispatch();
   const [inputData, setInputData] = useState<string | any>({
     name: "",
     email: "",
@@ -56,6 +60,10 @@ const Signup = () => {
   };
 
   const handleSubmit = () => {
+    if (!validateEmail(email)) {
+      dispatch(openSnackBar("error", "Email is invalid"));
+      return;
+    }
     if (!disable) {
       mutate(data);
     }

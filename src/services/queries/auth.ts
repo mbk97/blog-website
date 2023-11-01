@@ -1,50 +1,51 @@
+import axios from "axios";
 import { useMutation } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import { openSnackBar } from "../../components/redux/actions/snackbarActions";
 import { useAppDispatch } from "../../components/redux/store";
 import { getErrorMessage } from "../../utils/response-helper";
 import { saveToLocalStorage } from "../../utils/storage";
-import { loginRequest, registerUserRequest } from "../requests/auth";
 
 const useLoginUserMutation = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const { mutate, isLoading } = useMutation(loginRequest, {
-    onSuccess(data) {
+  const loginRequest = async (payload: any) => {
+    try {
+      const data = await axios.post(
+        `${process.env.REACT_APP_BASE_URL}/api/user/login`,
+        payload,
+      );
       dispatch(openSnackBar("success", data.data.message));
       saveToLocalStorage("user_data", data.data.user);
       saveToLocalStorage("access_token", data.data.user.token);
       navigate("/dashboard/latest");
-    },
-    onError: (error: any) => {
+    } catch (error) {
       const errorMessage = getErrorMessage(error);
       dispatch(openSnackBar("error", errorMessage));
-      console.log(errorMessage);
-    },
-  });
+    }
+  };
 
+  const { mutate, isLoading } = useMutation(loginRequest);
   return { mutate, isLoading };
 };
 
 const useRegisterUserMutation = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-
-  const { mutate, isLoading } = useMutation(registerUserRequest, {
-    onSuccess(data) {
-      console.log(data, "Data here");
-      dispatch(openSnackBar("success", data.data.message));
-      saveToLocalStorage("user_data", data.data.user);
-      saveToLocalStorage("access_token", data.data.user.access_token);
+  const registerUserRequest = async (payload: any) => {
+    try {
+      const response = await axios.post(
+        `${process.env.REACT_APP_BASE_URL}/api/user/register`,
+        payload,
+      );
+      dispatch(openSnackBar("success", response.data.message));
+      saveToLocalStorage("user_data", response.data.user);
+      saveToLocalStorage("access_token", response.data.user.access_token);
       navigate("/dashboard/latest");
-    },
-    onError: (error: any) => {
-      const errorMessage = getErrorMessage(error);
-      dispatch(openSnackBar("error", errorMessage));
-    },
-  });
-
+    } catch (error) {}
+  };
+  const { mutate, isLoading } = useMutation(registerUserRequest);
   return { mutate, isLoading };
 };
 

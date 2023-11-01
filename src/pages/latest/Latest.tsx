@@ -81,7 +81,7 @@ const Latest = () => {
       </TitleContainer>
       {isLoading && <BlogContentLoader />}
 
-      {!isLoading && blogResult?.length === 0 ? (
+      {blogResult?.length === 0 ? (
         <div
           style={{
             marginTop: "20px",

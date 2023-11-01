@@ -21,10 +21,14 @@ import { useLoginUserMutation } from "../../services/queries/auth";
 import {
   passwordValidator,
   checkPasswordValidator,
+  validateEmail,
 } from "../../utils/validator";
 import { AuthErrorText } from "../../components/common/text/Text";
+import { useAppDispatch } from "../../components/redux/store";
+import { openSnackBar } from "../../components/redux/actions/snackbarActions";
 
 const Login = () => {
+  const dispatch = useAppDispatch();
   const [data, setData] = useState<string | any>({
     email: "",
     password: "",
@@ -49,11 +53,13 @@ const Login = () => {
     password: password,
   };
 
-  const handleClick = () => {
+  const handleClick = async () => {
+    if (!validateEmail(email)) {
+      dispatch(openSnackBar("Error", "Email is invalid"));
+    }
     if (!disable || !checkPasswordValidator(password)) {
       mutate(payload);
     }
-    console.log(payload);
   };
 
   return (

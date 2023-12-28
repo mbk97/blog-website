@@ -13,8 +13,8 @@ Delete blog
 
 # Demo Link
 
-The link to the live project https://blog-website-liart.vercel.app/
-
+The link to the live project [https://blog-website-liart.vercel.app/
+](https://blog-website-six-zeta.vercel.app/)
 # Screenshots
 
 ![sign up](https://user-images.githubusercontent.com/63726675/205632176-535e2a7f-74b9-4e81-be95-e5c35df1ddb6.png)
